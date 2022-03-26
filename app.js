@@ -35,7 +35,7 @@ const pintarCards = data => {
         
         templateCard.querySelector('h5').textContent = producto.title 
         templateCard.querySelector('p').textContent = producto.precio
-        templateCard.querySelector('img').setAttribute("src", producto.thumbnailUrl )
+        templateCard.querySelector('img').setAttribute("src", producto.thumbnailUrl)
         templateCard.querySelector('.btn-dark').dataset.id = producto.id
 
         const clone = templateCard.cloneNode(true)
@@ -61,18 +61,20 @@ const addCarrito = e => {
 
 const setCarrito = objeto => {
     const producto = {
-        id: objeto.querySelector('.btn-dark').dataset.id,
+        
         title: objeto.querySelector('h5').textContent,
         precio: objeto.querySelector('p').textContent,
+        id: objeto.querySelector('.btn-dark').dataset.id,
         cantidad: 1
     }
 
-    if(carrito.hasOwnProperty(producto.id)) {
+    if (carrito.hasOwnProperty(producto.id)) {
     // suma el item en "carrito de compras"
     // cuando le damos mas de una vez al boton "comprar"
        producto.cantidad = carrito[producto.id].cantidad + 1
     }
        carrito[producto.id] = { ...producto }
+
        pintarCarrito()
 
 }
@@ -80,10 +82,11 @@ const setCarrito = objeto => {
 const pintarCarrito = () => {
     //console.log(carrito)
     items.innerHTML = ''
+
     Object.values(carrito).forEach(producto => {
        templateCarrito.querySelector('th').textContent = producto.id
-       templateCarrito.querySelectorAll('td'[0]).textContent = producto.title
-       templateCarrito.querySelectorAll('td'[1]).textContent = producto.cantidad
+       templateCarrito.querySelectorAll('td')[0].textContent = producto.title
+       templateCarrito.querySelectorAll('td')[1].textContent = producto.cantidad
        templateCarrito.querySelector('.btn-info').dataset.id = producto.id
        templateCarrito.querySelector('.btn-danger').dataset.id = producto.id
        templateCarrito.querySelector('span').textContent = producto.cantidad * producto.precio
@@ -93,6 +96,10 @@ const pintarCarrito = () => {
     })
     items.appendChild(fragment)
 
+    pintarFooter()
+}
 
-
+const pintarFooter = () => {
+    footer.innerHTML = ''
+    if ()
 }
